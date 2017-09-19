@@ -53,7 +53,6 @@ class MapScreen extends Component {
             restaurantData: [],
             LocationButtonBottom: 0,
         };
-        console.log('map scr...');
     }
 
     async componentWillMount() {
@@ -176,32 +175,6 @@ class MapScreen extends Component {
                             showCallout
                         />
                     ))}
-                    {/*<MapView.Marker
-                        coordinate={this.state.restaurantData[1]}
-                    >
-                        <MapView.Callout style={styles.plainView}>
-                            <View>
-                                <Text>This is a plain view</Text>
-                            </View>
-                        </MapView.Callout>
-                    </MapView.Marker>
-                    <MapView.Marker
-                        coordinate={this.state.region}
-                        calloutOffset={{ x: -8, y: 28 }}
-                        calloutAnchor={{ x: 0.5, y: 0.4 }}
-                    >
-                        <MapView.Callout tooltip style={styles.customView}>
-                            <View style={[styles.container1]}>
-                                <View style={styles.bubble}>
-                                    <View style={styles.amount}>
-                                        <Text>This is a custom callout bubble view</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.arrowBorder} />
-                                <View style={styles.arrow} />
-                            </View>
-                        </MapView.Callout>
-                    </MapView.Marker>*/}
                 </MapView>
                 {/*<View style={styles.container}>
                     <Text style={styles.paragraph}>{text}</Text>
@@ -218,51 +191,10 @@ const styles = {
         justifyContent: 'center',
         backgroundColor: '#ecf0f1',
     },
-    plainView: {
-        width: 60,
-    },
     paragraph: {
         margin: 24,
         fontSize: 18,
         textAlign: 'center',
-    },
-    customView: {
-        width: 140,
-        height: 100,
-    },
-    container1: {
-        flexDirection: 'column',
-        alignSelf: 'flex-start',
-    },
-    bubble: {
-        width: 140,
-        flexDirection: 'row',
-        alignSelf: 'flex-start',
-        backgroundColor: '#fff',
-        paddingHorizontal: 20,
-        paddingVertical: 12,
-        borderRadius: 6,
-        borderColor: '#007a87',
-        borderWidth: 0.5,
-    },
-    amount: {
-        flex: 1,
-    },
-    arrow: {
-        backgroundColor: 'transparent',
-        borderWidth: 16,
-        borderColor: 'transparent',
-        borderTopColor: '#4da2ab',
-        alignSelf: 'center',
-        marginTop: -32,
-    },
-    arrowBorder: {
-        backgroundColor: 'transparent',
-        borderWidth: 16,
-        borderColor: 'transparent',
-        borderTopColor: '#007a87',
-        alignSelf: 'center',
-        marginTop: -0.5,
     },
 };
 
