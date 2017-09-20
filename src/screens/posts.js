@@ -165,6 +165,10 @@ class Posts extends Component {
     }
 
     render() {
+        const { params } = this.props.navigation.state;
+        if(params){
+            alert('data received '+params.data.name);
+        }
         return (
             <View style={styles.rootContainer}>
                 <ScrollView style={{flex: 1}}>

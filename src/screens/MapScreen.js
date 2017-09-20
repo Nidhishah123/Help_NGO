@@ -23,7 +23,9 @@ import {
     isAndroid,
     isDevice,
     isIOS,
+    FONT,
 } from '../constants';
+import DisplayInfo from '../components/infoCard';
 
 import markerImage from '../Images/icon3.png';
 
@@ -53,6 +55,9 @@ class MapScreen extends Component {
             },
             restaurantData: [],
             LocationButtonBottom: 0,
+            showInfo: false,
+            arrayNumber: 0,
+            infoData: [],
         };
     }
 
@@ -137,12 +142,45 @@ class MapScreen extends Component {
 
         navigator.geolocation.getCurrentPosition(success, error, options);
     }
+
     setMarkerRef = (ref) => {
         this.marker = ref
     }
-    onRegionChange = (region) => {
-        this.setState({region});
+
+    onRegionChange = async (region) => {
+        await this.setState({region});
         this.setRestaurantData();
+    };
+
+    async setInfoData(i) {
+        await this.setState({ infoData: this.state.restaurantData[i]});
+        this.setState({ showInfo: true, arrayNumber: i })
+    };
+
+    showInfo() {
+        if (this.state.showInfo) {
+            const { navigate } = this.props.navigation;
+
+            return (
+                <View style={styles.containerStyle}>
+                    <View style={styles.infoCardTopBar}>
+                        <Icon name='close'
+                              color={THEME_COLOR}
+                              onPress={this.closeInfo}
+                              containerStyle={{margin: 5,}}
+                        />
+                        <Text style={[FONT.STITLE_FONT, { color: THEME_COLOR, marginRight: 8,}]}
+                              onPress={() => navigate('posts', { data: this.state.infoData})}
+                        >Select</Text>
+                    </View>
+                    <DisplayInfo data={this.state.infoData} />
+                </View>
+            )
+        }
+    }
+
+    closeInfo = () => {
+        this.setState({showInfo: false});
     };
 
     render() {
@@ -173,6 +211,7 @@ class MapScreen extends Component {
                             key={i}
                             coordinate={restaurant}
                             pinColor='#e91e63'
+                            onPress={() => this.setInfoData(i)}
                         >
                             <View style={{justifyContent:'center',alignItems:'center'}}>
                                 <View  style={{backgroundColor:THEME_COLOR,borderRadius:8,paddingLeft:5,paddingRight:5}}>
@@ -186,6 +225,7 @@ class MapScreen extends Component {
                         </MapView.Marker>
                     ))}
                 </MapView>
+                {this.showInfo()}
                 {/*<View style={styles.container}>
                     <Text style={styles.paragraph}>{text}</Text>
                 </View>*/}
@@ -205,6 +245,28 @@ const styles = {
         margin: 24,
         fontSize: 18,
         textAlign: 'center',
+    },
+    containerStyle: {
+        height: height / 3,
+        alignItems: 'flex-start',
+        backgroundColor: '#fff',
+        margin: 10,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        borderRadius: 20,
+        borderWidth: 0.5,
+        borderColor: '#aaa',
+        position: 'absolute',
+    },
+    infoCardTopBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: width/1.065,
+        backgroundColor: '#eee',
+        borderTopLeftRadius:20,
+        borderTopRightRadius: 20,
     },
 };
 

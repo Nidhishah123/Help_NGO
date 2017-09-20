@@ -15,6 +15,8 @@ const LARGE_FONT = (25*width)/375;
 
 const TITLE_FONT = (20*width)/375;
 
+const STITLE_FONT = (18*width)/375;
+
 const MEDIUM_FONT = (16*width)/375;
 
 const TEXTBOX_FONT = (15*width)/375;
@@ -29,6 +31,7 @@ export const FONT = StyleSheet.create({
     XLARGE_FONT: { fontSize: XLARGE_FONT },
     LARGE_FONT: { fontSize: LARGE_FONT },
     TITLE_FONT: { fontSize: TITLE_FONT },
+    STITLE_FONT: { fontSize: STITLE_FONT },
     MEDIUM_FONT: { fontSize: MEDIUM_FONT },
     TEXTBOX_FONT: { fontSize: TEXTBOX_FONT },
     SMALL_FONT: { fontSize: SMALL_FONT },
