@@ -10,6 +10,7 @@ import {
     Alert,
     TouchableOpacity,
     Dimensions,
+    Image
 } from 'react-native';
 import {
     Icon
@@ -57,7 +58,7 @@ class MapScreen extends Component {
 
     async componentWillMount() {
 
-        if (isAndroid && isDevice) {
+        if (!isDevice) {
             this.setState({
                 errorMessage: 'Oops, this will not work in an Android emulator. Try it on your device!',
             });
@@ -136,7 +137,9 @@ class MapScreen extends Component {
 
         navigator.geolocation.getCurrentPosition(success, error, options);
     }
-
+    setMarkerRef = (ref) => {
+        this.marker = ref
+    }
     onRegionChange = (region) => {
         this.setState({region});
         this.setRestaurantData();
@@ -152,7 +155,6 @@ class MapScreen extends Component {
         return (
             <View style={{flex: 1, paddingBottom: this.state.LocationButtonBottom}}>
                 <MapView
-                    provider="google"
                     mapType="standard"
                     region={this.state.region}
                     onRegionChangeComplete={this.onRegionChange}
@@ -171,9 +173,17 @@ class MapScreen extends Component {
                             key={i}
                             coordinate={restaurant}
                             pinColor='#e91e63'
-                            title={restaurant.name}
-                            showCallout
-                        />
+                        >
+                            <View style={{justifyContent:'center',alignItems:'center'}}>
+                                <View  style={{backgroundColor:THEME_COLOR,borderRadius:8,paddingLeft:5,paddingRight:5}}>
+                                <Text style={{color:'#FFF'}}>{restaurant.name}</Text>
+                                </View>
+                                <Image
+                                    style={{width:30,height:30}}
+                                   source={require('../Images/icon3.png')}
+                                />
+                            </View>
+                        </MapView.Marker>
                     ))}
                 </MapView>
                 {/*<View style={styles.container}>

@@ -7,7 +7,7 @@ export { FONT } from './fontsize';
 
 export const isIOS = (Platform.OS === 'ios');
 export const isAndroid = (Platform.OS === 'android');
-export const isDevice = true;
+export const isDevice = false;
 
 export const SCREEN_WIDTH = Dimensions.get('window').width;
 export const SCREEN_HEIGHT = Dimensions.get('window').height;
