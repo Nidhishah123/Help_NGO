@@ -16,6 +16,8 @@ import {
     Icon,
 } from 'react-native-elements';
 import {ShareDialog} from 'react-native-fbsdk';
+import axios from 'axios';
+
 import {
     THEME_COLOR,
     isAndroid
@@ -109,32 +111,48 @@ class Posts extends Component {
     }
 
     shareLinkWithShareDialog = () => {
-        let postId;
-        let tmp = this.state;
-        ShareDialog.canShow(this.state.shareLinkContent).then(
-            function (canShow) {
-                if (canShow) {
-                    return ShareDialog.show(tmp.shareLinkContent);
+        const { params } = this.props.navigation.state;
+        console.log('params:---',params);
+        if(params){
+            let tmp = this.state;
+            ShareDialog.canShow(this.state.shareLinkContent).then(
+                function (canShow) {
+                    if (canShow) {
+                        return ShareDialog.show(tmp.shareLinkContent);
+                    }
                 }
-            }
-        ).then(
-            function (result) {
-                if (result.isCancelled) {
-                    Alert.alert('Alert','Share cancelled',[
-                        {text: 'OK'},
-                    ],{ cancelable: false });
-                } else {
-                    postId = result.postId;
-                    Alert.alert('Share success with postId: ', result.postId,[
-                        {text: 'OK'},
-                    ],{ cancelable: false });
+            ).then( (result) => {
+                    console.log('result:',result);
+                    if (result.isCancelled === true) {
+                        Alert.alert('Alert','Share cancelled',[
+                            {text: 'OK'},
+                        ],{ cancelable: false });
+                    } else {
+                        this.shareSuccessful(result);
+                    }
+                },
+                function (error) {
+                    Alert.alert('Failed', 'Share fail with error: ' + error);
                 }
-            },
-            function (error) {
-                Alert.alert('Failed', 'Share fail with error: ' + error);
-            }
-        );
+            );
+        } else {
+            Alert.alert('Warning', 'Select Restaurant to share from Map...');
+        }
     };
+
+    async shareSuccessful(result) {
+        let Access_Token = await AsyncStorage.getItem('fb_token');
+        let UserId = await AsyncStorage.getItem('user_fb_id');
+        console.log('token',Access_Token,' --post id: ',result.postId);
+        const { params } = this.props.navigation.state;
+        let restaurantName = params.data.name;
+        axios.post(`http://192.168.200.70:4000/v1/addPost?postId=${result.postId}&token=${Access_Token}&userId=${UserId}&restaurantName=${restaurantName}`)
+            .then( response => {
+                console.log('response : ',response);
+                alert(response.data.shared);
+            })
+            .catch( err => console.log('error: ',err));
+    }
 
     pressLikeIcon(Data) {
         if (Data.liked) {
@@ -165,10 +183,6 @@ class Posts extends Component {
     }
 
     render() {
-        const { params } = this.props.navigation.state;
-        if(params){
-            alert('data received '+params.data.name);
-        }
         return (
             <View style={styles.rootContainer}>
                 <ScrollView style={{flex: 1}}>
