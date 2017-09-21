@@ -106,7 +106,7 @@ class WelcomeScreen extends Component {
                         </Swiper>
                     </View>
                     <View style={ styles.buttonContainer }>
-                        <Button title='LOG IN WITH FACEBOOK---'
+                        <Button title='LOG IN WITH FACEBOOK'
                                 buttonStyle={ styles.btn }
                                 textStyle={ styles.btnText }
                                 onPress={this.onLoginButtonPress }
