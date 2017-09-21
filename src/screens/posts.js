@@ -11,13 +11,13 @@ import {
     AsyncStorage,
     Image,
     BackHandler,
-    ToastAndroid,
 } from 'react-native';
 import {
     Icon,
 } from 'react-native-elements';
 import {ShareDialog} from 'react-native-fbsdk';
 import axios from 'axios';
+import Toast from 'react-native-simple-toast';
 
 import {
     THEME_COLOR,
@@ -168,12 +168,7 @@ class Posts extends Component {
                     );
                 }
                 else {
-                    if(isAndroid){
-                        console.log('android toast...');
-                        ToastAndroid.show('Post Shared Successfully...', ToastAndroid.LONG);
-                    } else {
-                        Alert.alert('Success','Post Shared Successfully...');
-                    }
+                    Toast.show('Post Shared Successfully...', Toast.LONG);
                 }
             })
             .catch( err => console.log('error: ',err));
