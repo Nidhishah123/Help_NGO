@@ -11,6 +11,7 @@ import {
     AsyncStorage,
     Image,
     BackHandler,
+    ToastAndroid,
 } from 'react-native';
 import {
     Icon,
@@ -88,6 +89,7 @@ class Posts extends Component {
     componentWillUnmount(){
         BackHandler.removeEventListener("hardwareBackPress");
     }
+
     setShareLinkContent() {
         const { fb_link, fb_location_id, restaurant_about } = this.props.navigation.state.params.data;
         const shareLinkContent = {
@@ -142,7 +144,37 @@ class Posts extends Component {
         axios.post(`http://192.168.200.70:4000/v1/addPost?postId=${result.postId}&token=${Access_Token}&userId=${UserId}&restaurantName=${restaurantName}`)
             .then( response => {
                 console.log('response : ',response);
-                alert(response.data.shared);
+
+                if(response.data.privacy === "SELF"){
+                    Alert.alert(
+                        'Share Warning',
+                        'This post will not be considered because you have set privacy to "Only Me"',
+                        [
+                            {text: 'OK'},
+                            {text: 'Share Again', onPress: () => this.shareLinkWithShareDialog()}
+                        ],
+                        { cancelable: false }
+                    )
+                }
+                else if(response.data.error){
+                    Alert.alert(
+                        'Share Warning',
+                        response.data.error,
+                        [
+                            {text: 'OK'},
+                            {text: 'Share Again', onPress: () => this.shareLinkWithShareDialog()}
+                        ],
+                        { cancelable: false }
+                    );
+                }
+                else {
+                    if(isAndroid){
+                        console.log('android toast...');
+                        ToastAndroid.show('Post Shared Successfully...', ToastAndroid.LONG);
+                    } else {
+                        Alert.alert('Success','Post Shared Successfully...');
+                    }
+                }
             })
             .catch( err => console.log('error: ',err));
     }
