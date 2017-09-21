@@ -27,7 +27,9 @@ import PostCard from '../components/postCard';
 class Posts extends Component {
     constructor(props) {
         super(props);
-        this.state = {shareLinkContent: null};
+        this.state = {
+            shareLinkContent: null,
+        };
         this.PostData = [];
         this.url = null;
     }
@@ -73,29 +75,6 @@ class Posts extends Component {
                 share_url: '',
             }
         ];
-        let image_url = await AsyncStorage.getItem('user_picture_url');
-
-        const shareLinkContent = {
-            contentType: 'link',
-            contentUrl: "https://www.cafecoffeeday.com/",
-            commonParameters:{
-                placeId: "1811491829114040",
-                hashtag: `#sharedWithHelpWithFun`
-            },
-            /*photos: [
-                {
-                    imageUrl: image_url,
-                    userGenerated: true,
-                    caption: "Demo share"
-                },
-                {
-                    imageUrl: image_url,
-                    userGenerated: true,
-                    caption: "Demo share"
-                }
-            ],*/
-        };
-        this.setState({shareLinkContent: shareLinkContent});
     }
 
     componentDidMount() {
@@ -109,11 +88,25 @@ class Posts extends Component {
     componentWillUnmount(){
         BackHandler.removeEventListener("hardwareBackPress");
     }
+    setShareLinkContent() {
+        const { fb_link, fb_location_id, restaurant_about } = this.props.navigation.state.params.data;
+        const shareLinkContent = {
+            contentType: 'link',
+            contentUrl: fb_link,
+            contentDescription: restaurant_about,
+            commonParameters:{
+                placeId: fb_location_id,
+                hashtag: `#sharedWithHelpWithFun`
+            },
+        };
+        this.setState({shareLinkContent: shareLinkContent});
+    }
 
-    shareLinkWithShareDialog = () => {
+    shareLinkWithShareDialog = async () => {
         const { params } = this.props.navigation.state;
         console.log('params:---',params);
         if(params){
+            await this.setShareLinkContent();
             let tmp = this.state;
             ShareDialog.canShow(this.state.shareLinkContent).then(
                 function (canShow) {
