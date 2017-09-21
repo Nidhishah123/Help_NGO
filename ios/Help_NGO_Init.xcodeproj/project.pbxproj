@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -58,6 +57,7 @@
 		D3A38D94E1E143708FE6F7B2 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 587049742F9248338B84BB9B /* Octicons.ttf */; };
 		FDD26D8B616E4E6284555389 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B406AEEABB1E45CD825E816E /* Ionicons.ttf */; };
 		FE0B10BFA1424444ABC75DBA /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC93377A5F647E294F50183 /* libRNSound.a */; };
+		193F855C15584EA39E064BBD /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D463D059FF482DAAF065C8 /* libLRDRCTSimpleToast.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -404,6 +404,8 @@
 		F092F2CA45454D59BD4F13FA /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		FBA7EB3857F24A1A9D6E2941 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		FBE219F29DF644238BFB8CCB /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		4CC09C998394436A8508E20C /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; name = "LRDRCTSimpleToast.xcodeproj"; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		17D463D059FF482DAAF065C8 /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; name = "libLRDRCTSimpleToast.a"; path = "libLRDRCTSimpleToast.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -443,6 +445,7 @@
 				A516F607BE294D7D82684DC0 /* libAirMaps.a in Frameworks */,
 				94BE612A35B74FCE847721D3 /* libReactNativePermissions.a in Frameworks */,
 				FE0B10BFA1424444ABC75DBA /* libRNSound.a in Frameworks */,
+				193F855C15584EA39E064BBD /* libLRDRCTSimpleToast.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +692,7 @@
 				65DDD0DF9252451A8C91F035 /* AirMaps.xcodeproj */,
 				DC51AFADB72B4F928D9B198E /* ReactNativePermissions.xcodeproj */,
 				78925755D38F417C9EC12D7B /* RNSound.xcodeproj */,
+				4CC09C998394436A8508E20C /* LRDRCTSimpleToast.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1383,12 +1387,14 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)..\node_modules\neact-native-permissions/**",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				INFOPLIST_FILE = Help_NGO_InitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1414,12 +1420,14 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)..\node_modules\neact-native-permissions/**",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				INFOPLIST_FILE = Help_NGO_InitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1455,6 +1463,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)..\node_modules\neact-native-permissions/**",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				INFOPLIST_FILE = Help_NGO_Init/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1491,6 +1500,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)..\node_modules\neact-native-permissions/**",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				INFOPLIST_FILE = Help_NGO_Init/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1525,11 +1535,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)..\node_modules\neact-native-permissions/**",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				INFOPLIST_FILE = "Help_NGO_Init-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1565,11 +1577,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)..\node_modules\neact-native-permissions/**",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 				);
 				INFOPLIST_FILE = "Help_NGO_Init-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1600,6 +1614,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Help_NGO_Init-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1624,6 +1639,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Help_NGO_Init-tvOSTests";
