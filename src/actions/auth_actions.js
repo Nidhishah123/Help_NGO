@@ -15,7 +15,7 @@ export const facebookLogin = () => async dispatch => {
       //  let token = data.accessToken.toString();
         dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
     } else {
-        //LoginManager.logOut();
+        LoginManager.logOut();
         doFacebooLogin(dispatch);
     }
 };
