@@ -140,8 +140,8 @@ class Posts extends Component {
         let UserId = await AsyncStorage.getItem('user_fb_id');
         console.log('token',Access_Token,' --post id: ',result.postId);
         const { params } = this.props.navigation.state;
-        let restaurantName = params.data.name;
-        axios.post(`http://192.168.200.70:4000/v1/addPost?postId=${result.postId}&token=${Access_Token}&userId=${UserId}&restaurantName=${restaurantName}`)
+        let restaurantId = params.data._id;
+        axios.post(`http://192.168.200.70:4000/v1/addPost?postId=${result.postId}&token=${Access_Token}&userId=${UserId}&restaurantId=${restaurantId}`)
             .then( response => {
                 console.log('response : ',response);
 
